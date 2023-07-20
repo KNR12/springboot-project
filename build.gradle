@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+}
+
+group = 'springboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	cucumberRuntime {
+		extendsFrom testImplementation
+	}
+}
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	implementation 'io.cucumber:cucumber-java:6.9.1'
+	implementation 'io.cucumber:cucumber-core:6.9.1'
+	implementation 'io.cucumber:cucumber-junit:6.9.1'
+	implementation 'io.cucumber:cucumber-picocontainer:6.9.1'
+	implementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
+	implementation 'io.cucumber:gherkin:5.0.0'
+	implementation 'tech.grasshopper:extentreports-cucumber6-adapter:2.13.0'
+	testImplementation 'io.rest-assured:rest-assured:4.3.3'
+	testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
